@@ -1,5 +1,12 @@
 steps:
   
+  - label: "Testing"
+    command:
+      - npm install
+      - npm run build
+    agents:
+      - "gce=true"
+
   - command:
       - gcloud auth activate-service-account --key-file /etc/service_key/service-account-key.json
       - cp staging.Dockerfile deployment.Dockerfile
