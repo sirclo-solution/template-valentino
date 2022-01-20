@@ -1,11 +1,4 @@
 steps:
-  
-  - label: "Testing"
-    command:
-      - npm install
-      - npm run build
-    agents:
-      - "gce=true"
 
   - command:
       - gcloud auth activate-service-account --key-file /etc/service_key/service-account-key.json
@@ -37,5 +30,11 @@ steps:
       - gsutil cp -r /tmp/$$dockerimage/static gs://sirclo-template/valentino/_next/
       - docker rm -v $$id
       - deployer --build-from-pod --docker-tag $$tag --use-helmfile --project=sirclo-prod
+    agents:
+      - "gce-prod=true"
+
+  - label: ":envelope: Notify to slack channel"
+    command:
+      - 'curl -X POST --data-urlencode "payload={\"channel\": \"#template-deployment\", \"username\": \"webhookbot\", \"text\": \"template Valentino released to production\", \"icon_emoji\": \":rocket:\"}" https://hooks.slack.com/services/T02FRP3AM/B02T9N2HMEF/aMi6zFE3PqhmPbZMVKMh6lZ'
     agents:
       - "gce-prod=true"
