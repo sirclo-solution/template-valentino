@@ -219,11 +219,11 @@ const ProductsPage: FC<any> = ({
         <div className="row">
           <div className="col-12 col-lg-10 offset-lg-1">
             <div className={styles.products_header}>
-              <h3 className="text-capitalize">
+              <h1 className="text-capitalize">
                 {categories
                   ? convertToTextFromQuery(categories)
                   : i18n.t("product.all")}
-              </h3>
+              </h1>
             </div>
             <div className="row">
               {Array.from(Array(currPage + 1)).map((_, i) => (

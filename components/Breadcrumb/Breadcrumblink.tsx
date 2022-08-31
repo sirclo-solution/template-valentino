@@ -10,20 +10,26 @@ export type PageHeadingPropsType = {
   links: Array<string>
   withImage?: string
   lng: any
+  page?: string
 }
 
 const Breadcrumblink: FC<any> = ({
   title,
   links,
   withImage,
-  lng
+  lng,
+  page,
 }) => {
   return (
     <div
       className={`${styles.sectionBreadcrumb} ${withImage ? styles.sectionBreadcrumb__image : ""}`}
       style={{ backgroundImage: `url(${withImage})` }}
     >
-      <h1 className={styles.sectionBreadcrumb__title}>{title}</h1>
+      {page === 'product' ? 
+        <h2 className={styles.sectionBreadcrumb__title}>{title}</h2>
+      :
+        <h1 className={styles.sectionBreadcrumb__title}>{title}</h1>
+      }
       <nav aria-label="breadcrumb">
         <ol className={`breadcrumb ${styles.breadcrumb_valentino}`}>
           {

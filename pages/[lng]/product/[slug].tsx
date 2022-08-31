@@ -339,6 +339,7 @@ const Product: FC<any> = ({ lng, lngDict, slug, data, brand, urlSite }) => {
           <Breadcrumblink
             links={linksBreadcrumb}
             lng={lng}
+            page='product'
           />
           <div className="col-12 col-lg-10 offset-lg-1">
             {data === null ? (
